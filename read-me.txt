@@ -1,0 +1,10 @@
+The tool is written in Node.js, but you can use it to run any commands.
+
+step1: npm install -g concurrently
+or if you are using it from npm scripts:
+
+step2: npm install concurrently --save
+
+
+
+step 3: npm i express --save
