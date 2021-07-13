@@ -3,11 +3,12 @@ const express = require("express");
 let router = express.Router();
 
 router.get("/hari", (req, res, next) => {
-    let objT = {field:{},error:{}}
-    let x = objT.field;
-    x['name'] = "shyam"
-    console.log(x);
-  res.send("hello i am from test1"+objT.field.name +"  "+ Object.error);
+
+  var person = [{name:'x', age: 20},
+  {name:'y',age:40},
+  {name:'z', age: 50}
+];    
+  res.send(person);
 });
 
 module.exports = router;
