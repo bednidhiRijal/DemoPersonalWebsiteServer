@@ -9,7 +9,7 @@ const port = process.env.port || 5000;
 const test = require("./routes/test");
 var cors = require("cors");
 
-
+app.set("port",port);
 // Parse URL-encoded bodies (as sent by HTML forms)
 app.use(express.urlencoded({extended: true}));
 
