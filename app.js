@@ -1,4 +1,5 @@
 const express = require("express");
+const { createProxyMiddleware } = require('http-proxy-middleware');
 const app = express();
 const multer = require('multer')
 var upload = multer();
@@ -12,6 +13,11 @@ var cors = require("cors");
 app.set("port",port);
 // Parse URL-encoded bodies (as sent by HTML forms)
 app.use(express.urlencoded({extended: true}));
+
+
+
+
+app.use('/api', createProxyMiddleware({ target: 'https://bed-demo-personal-website.herokuapp.com/', changeOrigin: true }));
 
 
 app.use("/test1", test);
