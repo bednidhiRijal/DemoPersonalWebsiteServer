@@ -17,7 +17,7 @@ app.use(express.urlencoded({extended: true}));
 
 
 
-app.use('/api', createProxyMiddleware({ target: 'https://bed-demo-personal-web-server.herokuapp.com', changeOrigin: true }));
+app.use('/', createProxyMiddleware({ target: 'https://bed-demo-personal-web-server.herokuapp.com', changeOrigin: true }));
 
 
 app.use("/test1", test);
