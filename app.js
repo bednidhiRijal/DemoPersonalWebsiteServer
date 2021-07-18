@@ -1,27 +1,25 @@
 const express = require("express");
-const { createProxyMiddleware } = require('http-proxy-middleware');
 const app = express();
-const multer = require('multer')
-var upload = multer();
-const port = process.env.PORT || 5000;
-
-//const path = require("path")
-//app.use(express.static(path.join(__dirname,'../public')))
-const test = require("./routes/test");
+const user = require("./routes/user")
+const pictures = require("./routes/pictures")
 var cors = require("cors");
 
+app.use(cors());
+//const path = require("path")
+//app.use(express.static(path.join(__dirname,'../public')))
+const port = process.env.PORT || 5000;
 app.set("port",port);
+
 // Parse URL-encoded bodies (as sent by HTML forms)
 app.use(express.urlencoded({extended: true}));
 
+//const test = require("./routes/test");
+//app.use("/test1", test);
+
+app.use("/user", user);
+app.use("/t",pictures)
 
 
-
-app.use('/', createProxyMiddleware({ target: 'https://bed-demo-personal-web-server.herokuapp.com', changeOrigin: true }));
-
-
-app.use("/test1", test);
-app.use(cors());
 app.get("/", (req, res) => {
   res.send(
     `<div>
@@ -31,10 +29,6 @@ app.get("/", (req, res) => {
   );
 });
 
-app.post("/user", upload.none(), (req, res) => {
-  console.log(req.body);
-  res.sendStatus(200);
-});
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
